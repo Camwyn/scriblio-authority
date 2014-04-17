@@ -148,6 +148,10 @@
 					options.classes = null;
 				}//end if
 
+
+				$('.search-box').css('margin-bottom', '-35px' );
+				console.log( 'negative-ing');
+
 				// add the items container
 				$root.append( html.items );
 
@@ -156,7 +160,17 @@
 				
 				//set top to the inverse of search-box margin to ensure it snugs up to the search box
 				$entry_container.css('top', function() {
-					return '-' + $( '.search-box' ).css('margin-bottom');
+					var margin = $entry_container.find( selectors.wrapper + '-input' ).css( 'margin-bottom' );
+					console.log( margin );
+
+					if ( 0 < margin ) {
+						console.log( 'margin greater: ' + margin );
+						margin = '-' + margin;
+					} else {
+						console.log( 'margin lesser: ' + margin );
+					}
+					return margin;
+					//$( '.search-box' ).css('margin-bottom');
 				});
 
 				$root.append('<div class="' + selector + '-clearfix"/>');
